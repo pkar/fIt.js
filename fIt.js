@@ -161,36 +161,35 @@ fIt can be distributed, dissected, and dismantled. It cannot be used though.
   E.mapKeys = function(keys, chars, type) {
     var first, letter, letters, rest, ret, y, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
     if (type == null) {
-      type = "iterative";
+      type = "r";
     }
-    if (type === 'iterative') {
-      return console;
-    } else {
-      ret = [];
-      if (chars.length < 1) {
-        return [''];
-      }
-      first = chars[0];
-      rest = chars.slice(1);
-      letters = keys[first];
-      if (!letters) {
-        _ref = this.mapKeys(keys, rest, 'recursive');
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          y = _ref[_i];
-          ret.push(first + y);
+    switch (type) {
+      case 'r':
+        ret = [];
+        if (chars.length < 1) {
+          return [''];
         }
-      } else {
-        _ref1 = keys[first];
-        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-          letter = _ref1[_j];
-          _ref2 = this.mapKeys(keys, rest, 'recursive');
-          for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-            y = _ref2[_k];
-            ret.push(letter + y);
+        first = chars[0];
+        rest = chars.slice(1);
+        letters = keys[first];
+        if (!letters) {
+          _ref = this.mapKeys(keys, rest, 'r');
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            y = _ref[_i];
+            ret.push(first + y);
+          }
+        } else {
+          _ref1 = keys[first];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            letter = _ref1[_j];
+            _ref2 = this.mapKeys(keys, rest, 'r');
+            for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+              y = _ref2[_k];
+              ret.push(letter + y);
+            }
           }
         }
-      }
-      return ret;
+        return ret;
     }
   };
 
@@ -203,8 +202,8 @@ fIt can be distributed, dissected, and dismantled. It cannot be used though.
   
   2, 7, 1, 8, 2, 8, 4, 5, 0, 4, 9, 5
   
-  The max profit is 9, by selecting at 1 deselecting when 9
-  Therefore the return values are (8, [8, 10])
+  The max profit is 9, by selecting at 8 deselecting at 10
+  Therefore the return values are (9, [8, 10])
   */
 
 

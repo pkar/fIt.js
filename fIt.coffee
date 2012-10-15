@@ -96,24 +96,23 @@ For instance, on a phone number pad, digits map to letters
 2 -> [a, b, c]
 23 -> [ad, ae, af, bd, be, bf, cd, ce, cf]
 ###
-E.mapKeys = (keys, chars, type="iterative") ->
-  if type is 'iterative'
-    console
-  else
-    ret = []
-    if chars.length < 1
-      return ['']
-    first = chars[0]
-    rest = chars[1..]
-    letters = keys[first]
-    if not letters
-      for y in this.mapKeys(keys, rest, 'recursive')
-        ret.push first+y
-    else
-      for letter in keys[first]
-        for y in this.mapKeys(keys, rest, 'recursive')
-          ret.push letter+y
-    ret
+E.mapKeys = (keys, chars, type="r") ->
+  switch type
+    when 'r' #recurse
+      ret = []
+      if chars.length < 1
+        return ['']
+      first = chars[0]
+      rest = chars[1..]
+      letters = keys[first]
+      if not letters
+        for y in this.mapKeys(keys, rest, 'r')
+          ret.push first+y
+      else
+        for letter in keys[first]
+          for y in this.mapKeys(keys, rest, 'r')
+            ret.push letter+y
+      ret
 
 ###
 Given an array representing integer values over time, calculate
@@ -124,8 +123,8 @@ For example, given the values
 
 2, 7, 1, 8, 2, 8, 4, 5, 0, 4, 9, 5
 
-The max profit is 9, by selecting at 1 deselecting when 9
-Therefore the return values are (8, [8, 10])
+The max profit is 9, by selecting at 8 deselecting at 10
+Therefore the return values are (9, [8, 10])
 ###
 E.maxProfit = (values) ->
   if not values

@@ -39,12 +39,12 @@ test("mapKeys", function() {
     '8': 'tuv',
     '9': 'wxyz',
   };
-  deepEqual(E.mapKeys(keys, '1', 'recursive'), ['1'], '2');
-  deepEqual(E.mapKeys(keys, '2', 'recursive'), ['a', 'b', 'c'], '2');
-  deepEqual(E.mapKeys(keys, '23', 'recursive'), ['ad','ae','af','bd','be','bf','cd','ce','cf'], '23');
-  notDeepEqual(E.mapKeys(keys, '32', 'recursive'), ['ad','ae','af','bd','be','bf','cd','ce','cf'], '32 not equal');
-  deepEqual(E.mapKeys(keys, '$2', 'recursive'), ['$a', '$b', '$c'], '$2');
-  var three = E.mapKeys(keys, '456', 'recursive');
+  deepEqual(E.mapKeys(keys, '1', 'r'), ['1'], '2');
+  deepEqual(E.mapKeys(keys, '2', 'r'), ['a', 'b', 'c'], '2');
+  deepEqual(E.mapKeys(keys, '23', 'r'), ['ad','ae','af','bd','be','bf','cd','ce','cf'], '23');
+  notDeepEqual(E.mapKeys(keys, '32', 'r'), ['ad','ae','af','bd','be','bf','cd','ce','cf'], '32 not equal');
+  deepEqual(E.mapKeys(keys, '$2', 'r'), ['$a', '$b', '$c'], '$2');
+  var three = E.mapKeys(keys, '456', 'r');
   ok(three.length, 3, '456');
 });
 
